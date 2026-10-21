@@ -1,6 +1,7 @@
-# 97_rigorous_fixes.py - 核查数据级修复
-# ①landmark-24h分析 ②敏感性表型死亡OR ③LASSO标准化系数表 ④评分卡均值/SD/截距
-# ⑤Table S3英文版(补齐参照死亡率) ⑥Fig4 SHAP可读标签
+# 97_cohort_level_checks.py - cohort-level checks and supplementary outputs
+# (1) landmark-24h analysis; (2) mortality OR by sensitivity phenotype;
+# (3) standardised LASSO coefficients; (4) score-card means/SDs/intercept;
+# (5) Table S3 (English); (6) Fig. 4 SHAP labels
 # -*- coding: utf-8 -*-
 import warnings; warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd

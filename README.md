@@ -43,7 +43,7 @@ The fixed random seed is **20260101** throughout. Key steps:
 | Score card and recalibration figures | `code/102_score_recalibration_figures.py` | `results/v5_score_card_full.csv`, `results/v5_recalibration.csv` |
 | Mediation analysis (2,000 bootstrap replicates) | `code/103_mediation_and_pathway_figure.py`, `code/115_mediation_boot2000_fig.py` | `results/v6_mediation_boot2000.csv`, `figures/fig3_pathway.png` |
 | Eligibility sensitivity (first-stay / ≥24 h) | `code/104_eligibility_sensitivity.py` | Supplement S1 table |
-| Landmark derivation; COVID-era and decline-criterion exclusions | `code/106_review_recompute.py` | `results/v6_landmark24h_corrected.csv`, `results/v6_covid_era_sensitivity.csv`, `results/v6_excl_decline_only.csv` |
+| Landmark derivation; COVID-era and decline-criterion exclusions | `code/106_landmark_and_sensitivity.py` | `results/v6_landmark24h_corrected.csv`, `results/v6_covid_era_sensitivity.csv`, `results/v6_excl_decline_only.csv` |
 | IPW balance diagnostics (SMD, weights, ESS) | `code/107_ipw_recovery.py` | `results/v6_ipw_balance_smd.csv` |
 | LVEF recovery; repeat-stay accounting | `code/109_recovery_readmission.py` | aggregated in `results/v6_recovery_readmission_log.txt` |
 | Multiple imputation; Riley minimum sample size | `code/110_mi_riley.py`, `code/111_mi_sensitivity.R` | `results/v6_mi_sensitivity.csv` |

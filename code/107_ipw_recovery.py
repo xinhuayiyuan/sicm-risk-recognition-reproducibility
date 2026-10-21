@@ -36,11 +36,11 @@ we_raw = w[full['evaluable'] == 1].copy()
 lo_w, hi_w = np.percentile(we_raw, [1, 99])
 w[full['evaluable'] == 1] = np.clip(we_raw, lo_w, hi_w)
 full['sw'] = w
-log(f'[B8] PS model AUC={roc_auc_score(full["evaluable"], ps):.3f} (manuscript: 0.704), n={len(full)}, evaluable={full.evaluable.sum()}')
-log(f'[B8] weight range after 1-99pct truncation: [{w[full.evaluable==1].min():.2f}, {w[full.evaluable==1].max():.2f}]; pre-truncation max={we_raw.max():.2f}')
+log(f'[ipw] propensity model AUC={roc_auc_score(full["evaluable"], ps):.3f}, n={len(full)}, evaluable={full.evaluable.sum()}')
+log(f'[ipw] weight range after 1-99pct truncation: [{w[full.evaluable==1].min():.2f}, {w[full.evaluable==1].max():.2f}]; pre-truncation max={we_raw.max():.2f}')
 ev1 = (full['evaluable'] == 1).values
 ess = w[ev1].sum() ** 2 / (w[ev1] ** 2).sum()
-log(f'[B8] ESS(evaluable)={ess:.0f} / {ev1.sum()} ({ess/ev1.sum()*100:.1f}%)')
+log(f'[ipw] ESS(evaluable)={ess:.0f} / {ev1.sum()} ({ess/ev1.sum()*100:.1f}%)')
 
 def smd(x, g, wt=None):
     x1, x0 = x[g == 1].astype(float), x[g == 0].astype(float)
@@ -60,15 +60,15 @@ rows = [dict(covariate=c,
         for c in Xps.columns]
 smdf = pd.DataFrame(rows)
 smdf.to_csv(f'{D}/results/v6_ipw_balance_smd.csv', index=False)
-log('[B8] SMD before/after weighting:')
+log('[ipw] SMD before/after weighting:')
 log(smdf.to_string(index=False))
-log(f"[B8] max |SMD| weighted={smdf['SMD_weighted'].abs().max():.3f}; positivity: min PS among evaluable={ps[ev1].min():.3f}")
+log(f"[ipw] max |SMD| weighted={smdf['SMD_weighted'].abs().max():.3f}; positivity: min PS among evaluable={ps[ev1].min():.3f}")
 
 # ---- LVEF recovery rate ----
 tables = pd.read_sql("SELECT table_name FROM information_schema.tables WHERE table_schema='mimiciv_echo'", conn)
-log(f'\n[B16] mimiciv_echo tables: {list(tables.table_name)}')
+log(f'\n[recovery] mimiciv_echo tables: {list(tables.table_name)}')
 lvef = pd.read_sql("SELECT * FROM mimiciv_echo.echo_lvef_numeric LIMIT 3", conn)
-log(f'[B16] echo_lvef_numeric columns: {list(lvef.columns)}')
+log(f'[recovery] echo_lvef_numeric columns: {list(lvef.columns)}')
 
 with open(f'{D}/results/v6_ipw_recovery_log.txt', 'w', encoding='utf-8') as f:
     f.write('\n'.join(OUT))

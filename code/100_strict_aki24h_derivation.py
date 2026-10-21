@@ -1,6 +1,6 @@
-# 100_strict_aki24h_derivation.py — 投稿前核查记录DB侧核验
-# 1) 严格0-24h AKI分期（KDIGO肌酐标准）与whole-stay aki_stage_max对比
-# 2) vaso_new_upgrade/post_max_ned窗口刻画
+# 100_strict_aki24h_derivation.py — database-side derivation checks
+# 1) strict 0-24h AKI stage (KDIGO creatinine criteria) vs whole-stay aki_stage_max
+# 2) window characterisation of vaso_new_upgrade / post_max_ned
 # 3) eICU n=6,006流程数字
 # -*- coding: utf-8 -*-
 import warnings; warnings.filterwarnings('ignore')

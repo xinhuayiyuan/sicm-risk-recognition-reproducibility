@@ -1,5 +1,6 @@
-# 88_corrected_extras.py - 修正队列上的补算（交叉核查前置）
-# ①超声检出时间/迟发率 ②NE剂量三分位死亡率 ③SHAP ④DCA净获益区间核验 ⑤表S3编码敏感性
+# 88_corrected_extras.py - additional analyses in the corrected cohort
+# (1) time to echo detection / late-onset rate; (2) mortality by NE dose tertile;
+# (3) SHAP; (4) DCA net-benefit range; (5) Table S3 coding sensitivity
 # -*- coding: utf-8 -*-
 import warnings; warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd, psycopg2

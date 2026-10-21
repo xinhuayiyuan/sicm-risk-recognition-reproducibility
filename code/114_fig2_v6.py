@@ -89,7 +89,7 @@ p_val_l = ml.predict_proba(Xtr.iloc[ival])[:, 1]
 p_raw_l = ml.predict_proba(Xte)[:, 1]
 p_lgb = LogisticRegression(max_iter=1000).fit(p_val_l.reshape(-1, 1), ytr[ival]) \
           .predict_proba(p_raw_l.reshape(-1, 1))[:, 1]
-print(f'[sanity] AUCs: lambda.min={roc_auc_score(yte,p1):.3f} 1SE={roc_auc_score(yte,p2):.3f} '
+print(f'[check] AUCs: lambda.min={roc_auc_score(yte,p1):.3f} 1SE={roc_auc_score(yte,p2):.3f} '
       f'xgb={roc_auc_score(yte,p_xgb):.3f} lgb={roc_auc_score(yte,p_lgb):.3f} base={roc_auc_score(yte,pb):.3f}')
 
 MODELS = [('LASSO-logistic (lambda.min, primary)', p1, '#d62728'),

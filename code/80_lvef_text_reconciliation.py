@@ -1,4 +1,4 @@
-# 80_lvef_text_reconciliation.py - 超声LVEF结构化准确率核查（方案C.4，100例抽样）
+# 80_lvef_text_reconciliation.py - structured LVEF accuracy assessment (100-record stratified sample)
 # A. ETL保真度: echo_lvef_numeric vs lvef_import.csv (measurement_id全量对账)
 # B. 文本一致性: 100例分层抽样 -> 匹配mimiciv_note.radiology报告文本 -> 独立正则重提取 -> 一致率/kappa
 # C. 内部一致性: 生理范围/重复测定

@@ -1,6 +1,7 @@
 # 73_no_inotrope_sensitivity.py
-# 核查决议补充①：去除正性肌力药变量（dobutamine_24h/milrinone_24h）的敏感性模型
-# 目的: 排除残余反向因果（24h内启用正性肌力药可能继发于极早期超声）
+# Sensitivity model without inotrope variables (dobutamine_24h / milrinone_24h)
+# Rationale: rule out residual reverse causation (inotropes started within 24 h
+# may follow a very early echocardiogram)
 # -*- coding: utf-8 -*-
 import warnings; warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd

@@ -1,5 +1,5 @@
-# 86_corrected_full_eval.py - 修正队列主模型完整评估（第核查补算）
-# 补齐: 校准截距/斜率/ICI/Brier、基线(age+SOFA)AUC、1-SE模型、DCA曲线
+# 86_corrected_full_eval.py - complete evaluation of the primary model in the corrected cohort
+# Calibration intercept/slope/ICI/Brier, baseline (age+SOFA) AUC, 1-SE model, DCA
 # -*- coding: utf-8 -*-
 import warnings; warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd

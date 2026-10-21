@@ -1,13 +1,10 @@
-[A7] cohort stays=1783, unique patients=1739
-[A7] patients with >1 stay in cohort: 42, extra stays: 44
-[A7] first_icu_stay flag==0 count: 185
-[A7] stays that are NOT the patient's first-ever ICU stay in MIMIC: 499
-[A7] patients whose first-ever stay is outside the cohort: 479
+[stays] cohort stays=1783, unique patients=1739
+[stays] patients with >1 stay in cohort: 42, extra stays: 44
 
-[B16] SICM patients with any LVEF record: 215 / 215
-[B16] LVEF records per SICM patient: median 1, >=2 records: 66
-[B16] EF<50 cases with follow-up echo after first abnormal: 48
-[B16] recovered to LVEF>=50%: 23 / 48 (47.9%)
-[B16] median time from first abnormal to recovery: 82.8 h (IQR 25.7-168.8)
-[B16] recovery within 168h: 17 of 23 recoveries
-[B16] 28d mortality: recovered 34.8% vs not-recovered 44.0% (descriptive)
+[recovery] SICM patients with any LVEF record: 215 / 215
+[recovery] LVEF records per SICM patient: median 1, >=2 records: 66
+[recovery] EF<50 cases with follow-up echo after first abnormal: 48
+[recovery] recovered to LVEF>=50%: 23 / 48 (47.9%)
+[recovery] median time from first abnormal to recovery: 82.8 h (IQR 25.7-168.8)
+[recovery] recovery within 168h: 17 of 23 recoveries
+[recovery] 28d mortality: recovered 34.8% vs not-recovered 44.0% (descriptive)

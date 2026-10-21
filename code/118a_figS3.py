@@ -70,7 +70,7 @@ dte_z = dte[sel].astype(float).copy()
 dte_z[cont] = (dte_z[cont].fillna(dtr[cont].median()) - mu) / sd_
 tot_te = (dte_z * pts_raw).sum(axis=1)
 auc_score = roc_auc_score(yte, tot_te)
-print(f'[figS3] bedside score test AUC={auc_score:.3f} (manuscript: 0.719)')
+print(f'[figS3] bedside score test AUC={auc_score:.3f}')
 
 # ---- 修正界标（106流程） ----
 cr = pd.read_csv(f'{D}/data/comprisk_corrected.csv')[['stay_id', 't_ef50', 't_death']]

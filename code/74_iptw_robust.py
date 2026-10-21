@@ -1,5 +1,6 @@
 # 74_iptw_robust.py
-# 核查决议补充②：IPTW稳健三明治SE（HC1）+ 全流程bootstrap（PS重建含于每次抽样）
+# IPTW with robust sandwich SE (HC1) and full-procedure bootstrap
+# (propensity model refitted in each replicate)
 # -*- coding: utf-8 -*-
 import warnings; warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd

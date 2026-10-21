@@ -1,0 +1,21 @@
+Frozen primary model, test set: AUC = 0.731; n = 237, events = 65
+
+[landmark-24h] excluded: SICM onset <=24 h = 142; decline-criterion cases without
+                a timestamped sub-50% LVEF = 13; death <=24 h = 24
+[landmark-24h] n = 610; SICM events after 24 h = 60 (9.8%); non-events = 550
+[landmark-24h] frozen model transport: AUC = 0.655 (0.533-0.767)
+[landmark-24h] within-landmark refit: AUC = 0.541 (0.380-0.710)
+
+[era] anchor-year composition of the 789-patient cohort (count, events):
+2008-2010   289   81
+2011-2013   221   54
+2014-2016   167   56
+2017-2019    68   15
+2020-2022    44    9
+[era] 2020-2022 block: n = 44 (5.6%), events = 9
+[era] full cohort: adjusted OR = 1.704 (1.209-2.402), P = 0.0023
+[era] excluding 2020-2022: n = 745, events = 206, adjusted OR = 1.639 (1.152-2.330), P = 0.0060
+
+[decline-exclusion] decline-only cases excluded: 13
+[decline-exclusion] adjusted OR (n = 776, events = 202): OR = 1.739 (1.225-2.469), P = 0.0020
+[decline-exclusion] refit model test AUC: 0.730 (0.656-0.799); n = 233, events = 61
