@@ -1,0 +1,10 @@
+analysis,value
+n,776.0
+events,202.0
+adj_OR,1.739
+adj_OR_lo,1.225
+adj_OR_hi,2.469
+adj_OR_p,0.002
+test_AUC,0.73
+test_AUC_lo,0.656
+test_AUC_hi,0.799

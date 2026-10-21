@@ -1,0 +1,21 @@
+[B8] PS model AUC=0.704 (manuscript: 0.704), n=16462, evaluable=1783
+[B8] weight range after 1-99pct truncation: [0.24, 3.33]; pre-truncation max=5.42
+[B8] ESS(evaluable)=1254 / 1783 (70.4%)
+[B8] SMD before/after weighting:
+      covariate  SMD_unweighted  SMD_weighted
+            age           0.291         0.017
+       sofa_24h           0.514         0.095
+ heart_rate_max           0.185        -0.002
+        mbp_min          -0.301        -0.028
+  resp_rate_max           0.183         0.049
+       spo2_min          -0.239        -0.045
+lactate_max_24h           0.211         0.045
+        wbc_max           0.160         0.080
+ creatinine_max           0.345         0.139
+            cci           0.457         0.091
+  invasive_vent           0.144        -0.011
+       gender_f           0.032        -0.010
+[B8] max |SMD| weighted=0.139; positivity: min PS among evaluable=0.020
+
+[B16] mimiciv_echo tables: ['sicm_final_combined', 'echo_study_list', 'structured_measurement', 'lvef', 'lv_function', 'echo_icu_link', 'echo_lvef_numeric', 'echo_lvef_baseline', 'sicm_analysis_dataset', 'echo_lvef_followup', 'imaging_ef_drop', 'lvfunc_mapping', 'imaging_wma_new', 'acs_exclusion', 'sicm_imaging_criteria', 'sepsis_icu_cohort', 'troponin_sepsis', 'troponin_positive', 'vaso_new_upgrade', 'sicm_clinical_criteria', 'sicm_combined', 'img_tier1_ef_drop', 'img_tier2_ef_drop', 'img_tier3_ef_low', 'img_tier4_ef_low', 'img_tierb_wma_any', 'img_tier_combined', 'sicm_sensitivity', 'hf_history', 'sicm_imaging_alternative']
+[B16] echo_lvef_numeric columns: ['stay_id', 'hadm_id', 'subject_id', 'measurement_id', 'measurement_datetime', 'test_type', 'lvef_value', 'hours_from_icu_intime']

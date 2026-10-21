@@ -1,0 +1,10 @@
+analysis,value
+landmark_cohort_n,644.0
+events_after_24h,60.0
+event_rate,0.093
+transport_AUC,0.703
+transport_lo,0.538
+transport_hi,0.835
+refit_AUC,0.453
+refit_lo,0.325
+refit_hi,0.584

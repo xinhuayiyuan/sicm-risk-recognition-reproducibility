@@ -1,0 +1,3 @@
+metric,value
+oof_auc,0.738
+weighted_oof_auc,0.73

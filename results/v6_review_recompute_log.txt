@@ -1,0 +1,23 @@
+[sanity] frozen model test AUC=0.731 (manuscript: 0.731); test n=237, events=65
+
+[A1-old] n=644, events=60 (v5 csv: 644/60)
+[A1] excluded: early-onset(<=24h)=142, decline-only(no t_ef50)=13, death<=24h among rest=24
+[A1-corrected] landmark n=610, events after 24h=60 (9.8%), non-events=550
+[A1-corrected] transport(frozen): AUC=0.655 (0.533-0.767)
+[A1-corrected] within-landmark refit: AUC=0.541 (0.380-0.710)
+
+[B4] era composition of 789-cohort:
+                   count  sum
+anchor_year_group            
+2008 - 2010          289   81
+2011 - 2013          221   54
+2014 - 2016          167   56
+2017 - 2019           68   15
+2020 - 2022           44    9
+[B4] 2020-2022 block: n=44 (5.6%), events=9
+[B4] full-cohort adjusted OR=1.704 (1.209-2.402), P=0.0023
+[B4] excluding 2020-2022: n=745, events=206, adjusted OR=1.639 (1.152-2.330), P=0.0060
+
+[B10] decline-only cases excluded: 13 (manuscript: 13)
+[B10] adjusted OR excl. decline-only (n=776, events=202): OR=1.739 (1.225-2.469), P=0.0020
+[B10] refit model test AUC excl. decline-only: 0.730 (0.656-0.799); test n=233, events=61

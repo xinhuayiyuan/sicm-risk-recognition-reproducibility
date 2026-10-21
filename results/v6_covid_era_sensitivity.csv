@@ -1,0 +1,11 @@
+analysis,value
+covid_block_n,44.0
+covid_block_events,9.0
+covid_block_pct,5.6
+adj_OR_full,1.704
+adj_OR_full_lo,1.209
+adj_OR_full_hi,2.402
+adj_OR_excl_covid,1.639
+adj_OR_excl_covid_lo,1.152
+adj_OR_excl_covid_hi,2.33
+adj_OR_excl_covid_p,0.006

@@ -1,0 +1,13 @@
+analysis,value
+landmark_cohort_n,610.0
+events_after_24h,60.0
+event_rate,0.098
+excluded_early_onset,142.0
+excluded_decline_only,13.0
+excluded_death_le24h,24.0
+transport_AUC,0.655
+transport_lo,0.533
+transport_hi,0.767
+refit_AUC,0.541
+refit_lo,0.38
+refit_hi,0.71

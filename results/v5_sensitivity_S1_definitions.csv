@@ -1,0 +1,5 @@
+definition,event_rate,AUC,lo,hi
+LVEF <40%,0.306,0.721,0.671,0.775
+LVEF drop ≥15 pp,0.445,0.758,0.71,0.799
+Imaging-only,0.456,0.714,0.664,0.759
+Decompensated,0.17,0.707,0.638,0.774

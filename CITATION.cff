@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Reproducibility package: Left Ventricular Systolic Dysfunction in Sepsis without Prior Heart Failure — Early Risk Recognition and Mortality Risk"
+authors:
+  - family-names: "[Author names to be completed at publication]"
+    given-names: ""
+date-released: 2026-10-21
+url: "https://github.com/xinhuayiyuan/troponin-trajectory-sepsis123"
+license: MIT

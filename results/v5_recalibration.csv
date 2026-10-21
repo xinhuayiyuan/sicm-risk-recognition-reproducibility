@@ -1,0 +1,4 @@
+subgroup,ici_pre,ici_post
+AKI 1,0.098,0.098
+SOFA >=8,0.066,0.026
+AKI 0,0.096,0.052

@@ -1,0 +1,9 @@
+item,value
+unit,0.1902
+intercept_z,-1.609
+map_intercept,-1.526
+map_slope,0.152
+score_min,-18.0
+score_max,18.0
+auc_points,0.686
+auc_points_raw,0.719
