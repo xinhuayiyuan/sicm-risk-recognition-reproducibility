@@ -19,7 +19,7 @@
 ## Analysis Code (Locked)
 
 **Primary analysis script**: `code/101_full_recompute_strict24h.py`  
-**SHA256**: `0CF73CDB15624A3067431408F70EC50A589E07C8328D43820CD917FD1BB06D6D`  
+**SHA256**: `6850A974B8EDCB817179ECDD7228A08D714388F540562C0C738DA0B8ACF15E9B`  
 **Fixed random seed**: `20260101` (used throughout all scripts)
 
 **Code checksums**: See `code_checksums.txt` for SHA256 hashes of all analysis scripts.

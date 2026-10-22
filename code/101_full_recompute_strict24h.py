@@ -169,11 +169,11 @@ best = np.maximum(dca[dca.model == 'Treat all'].set_index('threshold')['net_bene
 pos = las_d.index[las_d.values > best.values]
 print(f'DCA净获益区间: {pos.min():.3f}-{pos.max():.3f}')
 
-# ============ Part 2: OOF（83流程） ============
+# ============ Part 2: OOF（与主模型同规格：Cs=20, 内层10折） ============
 oof = np.zeros(len(dn))
 for tr2, va in StratifiedKFold(5, shuffle=True, random_state=SEED).split(dn, y):
     Xa, Xb = prep(dn.iloc[tr2], dn.iloc[va])
-    oof[va] = las_fit10(Xa, y[tr2]).predict_proba(Xb)[:, 1]
+    oof[va] = las_fit20(Xa, y[tr2]).predict_proba(Xb)[:, 1]
 oof_auc = roc_auc_score(y, oof)
 print(f'\n=== Part2 OOF AUC = {oof_auc:.3f} (v4: 0.694) ===')
 pd.DataFrame({'metric': ['OOF_AUC'], 'value': [round(oof_auc, 3)]}).to_csv(
@@ -366,9 +366,10 @@ print('(v4: TE +10.0 (3.8-17.0); NDE +10.3 (4.1-17.4), PM -3.1% (-15.9,6.0); '
       'log ned: NDE +9.6 (3.0-16.4), PM 4.0% (-2.9,15.5))')
 
 # ============ Part 6: landmark-24h（97①流程, 新冻结模型） ============
-# Landmark-24 h cohort: patients alive and SICM-free at 24 h.
-# Excludes: SICM onset <=24 h; decline-criterion cases without a timestamped
-# sub-50% LVEF (onset time indeterminate); death within 24 h. -> n = 610, 60 later events.
+# [v6修正 2026-10-20] 原派生 (t_ef50 NaN | t_ef50>24) 有两处缺陷:
+#  (i) 13例仅靠下降标准入组的SICM患者无t_ef50时间戳, 被错误计入"24h无SICM"人群;
+#  (ii) 未要求界标时点存活(与方法学描述"alive and without SICM at 24 h"不符).
+# 修正后: 剔除24h前发病(142例)+无时间戳的下降标准病例(13例)+24h前死亡(24例) -> n=610, 事件60.
 cr = pd.read_csv(f'{D}/data/comprisk_corrected.csv')[['stay_id', 't_ef50', 't_death']]
 dn_lm = dn.merge(cr, on='stay_id', how='left')
 _early = (dn_lm['sicm'] == 1) & (dn_lm['t_ef50'] <= 24)
