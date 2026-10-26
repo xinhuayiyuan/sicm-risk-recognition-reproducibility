@@ -51,7 +51,7 @@ The fixed random seed is **20260101** throughout. Key steps:
 | Mediation analysis | `108_mediation_boot2000.py`, `103_mediation_and_pathway_figure.py` | `v6_mediation_boot2000.csv`, `fig3_pathway.png` |
 | Competing risks | `62_prepare_comprisk.py`, `62_comprisk.R`, `96_comprisk_corrected.R` | `v4_corrected_cif.csv`, `v4_corrected_finegray.csv` |
 | Internal-validation battery (subgroups, eras, phenotypes, weighted AUC) | `101_...` (part 7) | `v5_subgroup_heterogeneity.csv`, `v5_temporal_era_cv.csv`, `v5_sensitivity_S1_definitions.csv`, `v5_weighted_auc.csv` |
-| Landmark analysis | `101_...` (part 6), `106_review_recompute.py` | `v6_landmark24h_corrected.csv` |
+| Landmark analysis | `101_...` (part 6), `106_landmark_and_sensitivity.py` | `v6_landmark24h_corrected.csv` |
 | Eligibility sensitivity | `104_eligibility_sensitivity.py` | restriction sensitivity table (Supplement S1) |
 | Coding-era sensitivity | `101_...` (part 4) | `table_S1_coding_sensitivity_en.csv` |
 | eICU pathway consistency | `50_eicu_proxy.py`, `51_proxy_decompose.py` | `aim_eicu_V1_transport.csv`, `aim_eicu_V3_mediation.csv` |
