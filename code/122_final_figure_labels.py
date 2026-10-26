@@ -1,4 +1,4 @@
-# 122_final_figure_labels.py — analysis-set labels for supplementary forest and SHAP figures
+# 120_final_figure_labels.py — analysis-set labels for supplementary forest and SHAP figures
 # -*- coding: utf-8 -*-
 from pathlib import Path
 import numpy as np, pandas as pd
@@ -9,7 +9,11 @@ from PIL import Image, ImageDraw, ImageFont
 D = Path('<PROJECT_ROOT>/exec')
 # Subgroup forest: every row carries its own denominator and events.
 df = pd.read_csv(D / 'results/v5_subgroup_heterogeneity.csv').dropna(subset=['AUC'])
-labels = [f"{r.dim}: {r.subgroup} (n={int(r.n)}; {int(r.events)} SICM)" for r in df.itertuples()]
+labels = []
+for r in df.itertuples():
+    subgroup = r.subgroup
+    label = subgroup if subgroup.startswith(str(r.dim)) else f"{r.dim}: {subgroup}"
+    labels.append(f"{label} (n={int(r.n):,}; {int(r.events):,} SICM)")
 y = np.arange(len(df))[::-1]
 fig, ax = plt.subplots(figsize=(10, 6.5))
 ax.errorbar(df.AUC, y, xerr=[df.AUC-df.lo, df.hi-df.AUC], fmt='o', color='#1f77b4',

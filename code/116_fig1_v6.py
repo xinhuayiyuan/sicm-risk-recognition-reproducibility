@@ -1,77 +1,90 @@
-# 116_fig1_v6.py — C2: 图1重绘，补16,462(IPW分母)与1,504(ICD-10-only确认队列)两个侧支节点
+# 116_fig1_v6.py — Figure 1: cohort derivation plus analysis-set register.
+# Every analysis set used in the manuscript is labelled with n/events and its reporting location.
 # -*- coding: utf-8 -*-
-import textwrap
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 
 D = '<PROJECT_ROOT>/exec'
-fig, ax = plt.subplots(figsize=(13.5, 9.5))
-ax.axis('off')
+fig = plt.figure(figsize=(10.5, 12.5))
+gs = fig.add_gridspec(2, 1, height_ratios=[0.86, 1.14], hspace=0.12)
+axA = fig.add_subplot(gs[0])
+axB = fig.add_subplot(gs[1])
+for ax in (axA, axB):
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis('off')
 
-def wrap(t, w):
-    return '\n'.join(textwrap.fill(x, w) for x in t.split('\n'))
 
-# 主链（中列）
-boxes = [
-    ("Sepsis-3 ICU stays\n(MIMIC-IV 2008-2022)\nn = 18,273", 0.92),
-    ("Evaluable\n(troponin + LVEF echo)\nn = 2,350", 0.74),
-    ("Descriptive cohort: Table 1\n(age 18-90, no ACS)\nn = 1,783", 0.56),
-    ("New-onset cohort: model, mortality and MIMIC mediation\n(no HF by ICD-9 428.x AND ICD-10 I50)\nn = 789", 0.38),
-    ("New-onset LV systolic SICM\nn = 215 (27.2%)", 0.20),
+def box(ax, x, y, w, h, text, fc='#eaf2fb', ec='#1f77b4', fs=10):
+    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle='round,pad=0.010',
+                                fc=fc, ec=ec, lw=1.4))
+    ax.text(x + w / 2, y + h / 2, text, ha='center', va='center', fontsize=fs,
+            linespacing=1.15)
+
+
+def arrow(ax, xy1, xy2, color='#333333'):
+    ax.add_patch(FancyArrowPatch(xy1, xy2, arrowstyle='-|>', mutation_scale=15,
+                                 color=color, lw=1.3))
+
+
+axA.text(0.01, 0.98, 'A. Cohort derivation', fontsize=15, fontweight='bold',
+         ha='left', va='top')
+box(axA, 0.10, 0.80, 0.44, 0.12, 'Sepsis-3 ICU stays (MIMIC-IV 2008–2022)\nn = 18,273', fs=10)
+box(axA, 0.10, 0.60, 0.44, 0.12, 'Echocardiography + troponin evaluable\nn = 2,350', fs=10)
+box(axA, 0.10, 0.40, 0.44, 0.12, 'Descriptive cohort (Table 1)\nn = 1,783', fs=10)
+box(axA, 0.06, 0.10, 0.45, 0.19,
+    'No HF history\nNew-onset cohort: n = 789\n215 SICM  |  574 reference', fs=10)
+box(axA, 0.59, 0.10, 0.36, 0.19,
+    'Pre-existing heart disease\nn = 994 (625 SICM)', fc='#f5f5f5', ec='#777777', fs=9.5)
+box(axA, 0.60, 0.80, 0.35, 0.12, 'Excluded: no troponin\nor no LVEF echo\nn = 15,923',
+    fc='#fdf0e8', ec='#d62728', fs=9)
+box(axA, 0.60, 0.60, 0.35, 0.12, 'Excluded: age / ACS /\nprior cardiac surgery\nn = 567',
+    fc='#fdf0e8', ec='#d62728', fs=9)
+arrow(axA, (0.32, 0.80), (0.32, 0.72))
+arrow(axA, (0.32, 0.60), (0.32, 0.52))
+arrow(axA, (0.32, 0.40), (0.28, 0.29))
+arrow(axA, (0.32, 0.40), (0.77, 0.29), color='#777777')
+arrow(axA, (0.54, 0.86), (0.60, 0.86))
+arrow(axA, (0.54, 0.66), (0.60, 0.66))
+axA.text(0.01, 0.035, 'The 215 SICM cases are an outcome subgroup of the 789, not an independent cohort.',
+         fontsize=9, color='#333333')
+axA.text(0.01, 0.005, 'Additional, non-derivation analysis sets are listed in panel B.',
+         fontsize=9, color='#444444', style='italic')
+
+axB.text(0.01, 0.99, 'B. Analysis-set register: n, events and use in this manuscript',
+         fontsize=15, fontweight='bold', ha='left', va='top')
+axB.text(0.00, 0.93, 'Analysis set', fontsize=11.5, fontweight='bold', ha='left', va='center')
+axB.text(0.245, 0.93, 'n (events)', fontsize=11.5, fontweight='bold', ha='left', va='center')
+axB.text(0.385, 0.93, 'Role in this manuscript (tables and figures)',
+         fontsize=11.5, fontweight='bold', ha='left', va='center')
+axB.plot([0, 1], [0.905, 0.905], color='black', lw=1.1)
+
+rows = [
+    ('Descriptive cohort', '1,783\n(840 SICM)', 'Baseline description (Table 1)'),
+    ('New-onset cohort', '789\n(215 SICM; 574 ref)', 'Primary model, mortality, mediation and SHAP\n(Tables 2–4; Figs 2–4)'),
+    ('Development split', '552\n(150 events)', 'LASSO fitting only (Fig. 2)'),
+    ('Held-out test set', '237\n(65 events)', 'Discrimination, calibration, DCA and exploratory threshold\n(Table 2; Fig. 2; Supplementary Fig. S4A)'),
+    ('Five-fold OOF', '789\n(215 events)', 'Internal validation (Table 2)'),
+    ('24-h landmark subset', '610\n(60 events)', 'Post-24 h transport sensitivity (Supplementary Fig. S4B)'),
+    ('ICD-10-only HF cohort', '1,504\n(676 SICM)', 'HF-coding sensitivity and subgroups\n(Supplementary Table S1; Supplementary Fig. S3)'),
+    ('Echo-selection source', '16,462\n(1,783 evaluable)', 'IPW fit and balance; ESS 1,254 of 1,783\n(Table 3 note; Supplementary Fig. S2)'),
+    ('eICU proxy-pathway cohort', '6,006\n(3,902 exposed)', 'Exploratory pathway only; not external validation\n(Table 4; Fig. 4A; Supplementary Fig. S1)'),
 ]
-# 右侧排除框
-excl = [
-    ("Excluded:\nno troponin or no echo\n(n = 15,923)", 0.83),
-    ("Excluded: age / ACS /\nprior cardiac surgery (n = 567)", 0.65),
-    ("HF history by either coding system\n(n = 994, incl. 715 ICD-9-era HF)", 0.47),
-]
-# 左侧分析队列支框
-side = [
-    ("Age/ACS-eligible stays\n(denominator of the echo-selection\nIPW analysis)\nn = 16,462", 0.83),
-    ("ICD-10-only HF-ascertainment\ncohort (HF by ICD-10 I50 only\nexcluded, n = 279)\nn = 1,504", 0.47),
-    ("Reference group\n(no HF history; no SICM)\nn = 574", 0.20),
-]
-for txt, ypos in boxes:
-    ax.add_patch(FancyBboxPatch((0.30, ypos - 0.062), 0.40, 0.115,
-                                boxstyle="round,pad=0.012", fc='#eaf2fb', ec='#1f77b4', lw=1.4))
-    ax.text(0.50, ypos, wrap(txt, 30), ha='center', va='center', fontsize=12)
-for txt, ypos in excl:
-    ax.add_patch(FancyBboxPatch((0.74, ypos - 0.062), 0.25, 0.115,
-                                boxstyle="round,pad=0.012", fc='#fdf0e8', ec='#d62728', lw=1.2))
-    ax.text(0.865, ypos, wrap(txt, 22), ha='center', va='center', fontsize=9.5)
-for txt, ypos in side:
-    ax.add_patch(FancyBboxPatch((0.01, ypos - 0.062), 0.25, 0.115,
-                                boxstyle="round,pad=0.012", fc='#eef7ee', ec='#2ca02c', lw=1.2))
-    ax.text(0.135, ypos, wrap(txt, 24), ha='center', va='center', fontsize=9.5)
-ys = [b[1] for b in boxes]
-for i in range(len(ys) - 1):
-    ax.add_patch(FancyArrowPatch((0.50, ys[i] - 0.062), (0.50, ys[i + 1] + 0.062),
-                                 arrowstyle='-|>', mutation_scale=20, color='#333333', lw=1.5))
-for _, ypos in excl:
-    ax.add_patch(FancyArrowPatch((0.70, ypos), (0.74, ypos),
-                                 arrowstyle='-|>', mutation_scale=15, color='#d62728', lw=1.2))
-# 侧支箭头: 18,273 -> 16,462; 1,783 -> 1,504; 1,504 -> 789 (标注715)
-ax.add_patch(FancyArrowPatch((0.30, 0.92 - 0.03), (0.26, 0.83), arrowstyle='-|>',
-                             mutation_scale=15, color='#2ca02c', lw=1.2,
-                             connectionstyle="arc3,rad=0.25"))
-ax.add_patch(FancyArrowPatch((0.30, 0.56 - 0.03), (0.26, 0.47), arrowstyle='-|>',
-                             mutation_scale=15, color='#2ca02c', lw=1.2,
-                             connectionstyle="arc3,rad=0.25"))
-ax.add_patch(FancyArrowPatch((0.135, 0.47 - 0.062), (0.32, 0.38 + 0.062), arrowstyle='-|>',
-                             mutation_scale=15, color='#2ca02c', lw=1.2,
-                             connectionstyle="arc3,rad=0.25"))
-ax.text(0.16, 0.34, 'ICD-9-era HF\nexcluded (n = 715)', ha='center', va='center',
-        fontsize=9, color='#2ca02c')
-ax.add_patch(FancyArrowPatch((0.30, 0.38), (0.26, 0.20 + 0.062), arrowstyle='-|>',
-                             mutation_scale=15, color='#2ca02c', lw=1.2,
-                             connectionstyle="arc3,rad=0.18"))
-ax.text(0.50, 0.085, 'Table 1: descriptive cohort n = 1,783 | Primary model, mortality and MIMIC mediation: new-onset cohort n = 789',
-        ha='center', va='center', fontsize=9.5, color='#333333')
-ax.set_xlim(0, 1)
-ax.set_ylim(0.06, 1.0)
-fig.tight_layout()
-fig.savefig(f'{D}/figures/fig1_cohort_flow.png', dpi=200)
-plt.close('all')
-print('[done 116: fig1 v6 saved]')
+y0, step = 0.845, 0.092
+for k, (name, n, use) in enumerate(rows):
+    y = y0 - k * step
+    if k % 2 == 0:
+        axB.add_patch(plt.Rectangle((0, y - 0.041), 1.0, 0.082, color='#eef3f8', lw=0))
+    axB.text(0.00, y, name, fontsize=10.5, ha='left', va='center')
+    axB.text(0.245, y, n, fontsize=10.0, ha='left', va='center', linespacing=1.05)
+    axB.text(0.385, y, use, fontsize=10.0, ha='left', va='center', linespacing=1.05)
+axB.plot([0, 1], [0.055, 0.055], color='black', lw=1.1)
+axB.text(0.00, 0.012,
+         'SICM, sepsis-induced cardiomyopathy; HF, heart failure; OOF, out-of-fold; DCA, decision-curve analysis;\n'
+         'IPW, inverse probability weighting; ESS, effective sample size.',
+         fontsize=9.2, color='#333333', va='bottom')
+
+fig.subplots_adjust(left=0.02, right=0.985, top=0.985, bottom=0.015, hspace=0.12)
+fig.savefig(f'{D}/figures/fig1_cohort_flow.png', dpi=220, bbox_inches='tight')
+plt.close(fig)
+print('[done 116: fig1 cohort derivation + analysis-set register saved]')

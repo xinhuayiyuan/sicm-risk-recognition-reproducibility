@@ -17,9 +17,9 @@ This package contains the analysis code, SQL extraction scripts, aggregated resu
 
 - Table 1 describes the 1,783-patient descriptive cohort. The new-onset cohort (n = 789; 215 SICM, 574 reference) is used for model development, mortality association and MIMIC mediation.
 - The development/test partitions contain 552/150 and 237/65 patients/events, respectively. Five-fold OOF evaluation uses all 789 patients (215 events); its AUC CI is from 2,000-replicate stratified bootstrap. Subgroup recalibration uses twofold cross-fitting.
-- The ICD-10-only HF-ascertainment robustness cohort contains 1,504 patients (676 SICM); its overall OOF AUC (0.738) must not be confused with the primary new-onset OOF AUC (0.677).
+- The ICD-10-only HF-ascertainment robustness cohort contains 1,504 patients (676 SICM); its overall OOF AUC (0.738) must not be confused with the primary new-onset OOF AUC (0.677). The robustness battery used a separate sensitivity implementation (10 regularisation values, five-fold inner CV) and is not directly comparable with the primary n = 789 OOF estimate (20 values, 10-fold inner CV).
 - The SHAP figure explains an exploratory XGBoost fit in all 789 new-onset patients and has no separate held-out AUC. The XGBoost AUC 0.663 belongs to the distinct 237-patient test-set comparator.
-- The exploratory test-set operating point (0.297) was chosen to give sensitivity closest to 0.65, not by Youden's index. DCA is exploratory over evaluated thresholds of 7–50%.
+- The exploratory test-set operating point (0.297) was chosen to give sensitivity closest to 0.65, not by Youden's index. DCA is exploratory over evaluated thresholds of 5–50%.
 - MIMIC mediation uses 2,000 bootstrap replicates; the eICU proxy-pathway analysis uses 300. The eICU analysis is not external validation of the imaging-defined phenotype or prediction model.
 
 ## Data access
