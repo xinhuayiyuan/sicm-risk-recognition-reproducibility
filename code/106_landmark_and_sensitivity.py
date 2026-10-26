@@ -12,7 +12,7 @@ from sklearn.metrics import roc_auc_score
 
 SEED = 20260101
 rng = np.random.RandomState(SEED)
-D = 'D:/MIMICIV/exec'
+D = '<PROJECT_ROOT>/exec'
 OUT = []
 
 def log(s):

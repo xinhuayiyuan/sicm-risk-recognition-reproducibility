@@ -2,7 +2,7 @@
 import warnings; warnings.filterwarnings('ignore')
 import psycopg2, pandas as pd, numpy as np
 conn = psycopg2.connect(dbname='eicu', host='127.0.0.1', port=5431,
-                        user='postgres', password='123456')
+                        user='postgres', password='<SET-IN-ENVIRONMENT>')
 ei = pd.read_sql('SELECT * FROM eicu_crd.temp_final_export', conn)
 conn.close()
 print('raw export:', len(ei))

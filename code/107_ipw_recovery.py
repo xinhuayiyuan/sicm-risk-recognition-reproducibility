@@ -6,13 +6,13 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import roc_auc_score
 
-D = 'D:/MIMICIV/exec'
+D = '<PROJECT_ROOT>/exec'
 OUT = []
 def log(s):
     print(s); OUT.append(str(s))
 
 conn = psycopg2.connect(dbname='mimic', host='127.0.0.1', port=5431,
-                        user='postgres', password='123456')
+                        user='postgres', password='<SET-IN-ENVIRONMENT>')
 
 # ---- IPW balance diagnostics (same propensity model as 101, part 4) ----
 full = pd.read_sql("""SELECT stay_id, age, gender, sofa_24h, heart_rate_max, mbp_min,

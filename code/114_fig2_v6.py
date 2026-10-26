@@ -1,4 +1,4 @@
-# 114_fig2_v6.py — Fig. 2: ROC panel (lambda.min and 1-SE rules) and calibration scatter with loess
+# 114_fig2_v6.py — C1: Fig2重绘 (A)补1-SE曲线 (B)校准散点+loess; 模型复现与99e/101完全一致
 # -*- coding: utf-8 -*-
 import warnings; warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd
@@ -15,7 +15,7 @@ import xgboost as xgb
 import lightgbm as lgb
 
 SEED = 20260101
-D = 'D:/MIMICIV/exec'
+D = '<PROJECT_ROOT>/exec'
 
 co = pd.read_csv(f'{D}/data/cohort_main.csv')
 aki = pd.read_csv(f'{D}/data/aki_stage_24h.csv')
@@ -89,7 +89,7 @@ p_val_l = ml.predict_proba(Xtr.iloc[ival])[:, 1]
 p_raw_l = ml.predict_proba(Xte)[:, 1]
 p_lgb = LogisticRegression(max_iter=1000).fit(p_val_l.reshape(-1, 1), ytr[ival]) \
           .predict_proba(p_raw_l.reshape(-1, 1))[:, 1]
-print(f'[check] AUCs: lambda.min={roc_auc_score(yte,p1):.3f} 1SE={roc_auc_score(yte,p2):.3f} '
+print(f'[sanity] AUCs: lambda.min={roc_auc_score(yte,p1):.3f} 1SE={roc_auc_score(yte,p2):.3f} '
       f'xgb={roc_auc_score(yte,p_xgb):.3f} lgb={roc_auc_score(yte,p_lgb):.3f} base={roc_auc_score(yte,pb):.3f}')
 
 MODELS = [('LASSO-logistic (lambda.min, primary)', p1, '#d62728'),
@@ -98,7 +98,9 @@ MODELS = [('LASSO-logistic (lambda.min, primary)', p1, '#d62728'),
           ('LightGBM (Platt)', p_lgb, '#2ca02c'),
           ('Baseline (age+SOFA)', pb, '#7f7f7f')]
 
-fig, axes = plt.subplots(1, 3, figsize=(16.5, 4.8))
+fig, axes = plt.subplots(1, 3, figsize=(16.5, 5.1))
+fig.suptitle('MIMIC new-onset cohort | Held-out test set: n = 237 (65 SICM) | Predictors: strict 0–24 h',
+             fontsize=12, y=0.995)
 ax = axes[0]
 for name, p, c in MODELS:
     fpr, tpr, _ = roc_curve(yte, p)
@@ -128,5 +130,5 @@ for name, c, ls in [('LASSO lambda.min', '#d62728', '-'), ('Baseline', '#7f7f7f'
 ax.set_xlabel('Threshold probability'); ax.set_ylabel('Net benefit')
 ax.set_ylim(-0.05, 0.3); ax.set_title('C. Decision-curve analysis')
 ax.legend(fontsize=8); ax.grid(alpha=0.3)
-fig.tight_layout(); fig.savefig(f'{D}/figures/fig2_model_performance.png', dpi=200)
+fig.tight_layout(rect=[0, 0, 1, 0.94]); fig.savefig(f'{D}/figures/fig2_model_performance.png', dpi=200)
 plt.close('all'); print('[done 114: fig2 v6 saved]')

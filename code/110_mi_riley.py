@@ -5,7 +5,7 @@ import numpy as np, pandas as pd
 import statsmodels.api as sm
 from scipy import stats
 
-D = 'D:/MIMICIV/exec'
+D = '<PROJECT_ROOT>/exec'
 co = pd.read_csv(f'{D}/data/cohort_main.csv')
 aki = pd.read_csv(f'{D}/data/aki_stage_24h.csv')
 st = pd.read_csv(f'{D}/data/cohort_dn_strict24h.csv', usecols=['stay_id', 'vent_24h'])

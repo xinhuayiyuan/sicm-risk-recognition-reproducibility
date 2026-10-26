@@ -56,25 +56,17 @@ def mediation(d, mediator, mtype, n_boot=300):
     ci = np.nanpercentile(np.array(boots), [2.5, 97.5], axis=0)
     return pt, ci
 
+# Use the locked 2,000-replicate output; do not rerun or overwrite analyses for relabelling.
 meds = []
-canon = []
-for med, mtype, lab, short in [('vaso_new_upgrade', 'bin', 'MIMIC: vasopressor initiation',
-                                'vasopressor initiation/up-titration'),
-                               ('log_ned', 'cont', 'MIMIC: peak norepinephrine (log)',
-                                'peak norepinephrine (log1p)')]:
-    pt, ci = mediation(dn, med, mtype)
-    dfm = pd.DataFrame({'estimate': pt[:3], 'ci_lo': ci[0][:3], 'ci_hi': ci[1][:3]},
+m6 = pd.read_csv(f'{D}/results/v6_mediation_boot2000.csv').set_index('mediator')
+for key, lab in [('vasopressor initiation/up-titration', 'MIMIC: vasopressor initiation'),
+                 ('peak norepinephrine (log1p)', 'MIMIC: peak norepinephrine (log)')]:
+    r = m6.loc[key]
+    dfm = pd.DataFrame({'estimate': [r.TE, r.NDE, r.NIE],
+                        'ci_lo': [r.TE_lo, r.NDE_lo, r.NIE_lo],
+                        'ci_hi': [r.TE_hi, r.NDE_hi, r.NIE_hi]},
                        index=['TE', 'NDE', 'NIE'])
     meds.append((lab, dfm))
-    canon.append(dict(mediator=short, TE=pt[0], TE_lo=ci[0][0], TE_hi=ci[1][0],
-                      NDE=pt[1], NDE_lo=ci[0][1], NDE_hi=ci[1][1],
-                      NIE=pt[2], NIE_lo=ci[0][2], NIE_hi=ci[1][2],
-                      PM=pt[3], PM_lo=ci[0][3], PM_hi=ci[1][3]))
-    print(f'{short}: TE={pt[0]*100:.1f}pp ({ci[0][0]*100:.1f},{ci[1][0]*100:.1f}) | '
-          f'NDE={pt[1]*100:.1f}pp ({ci[0][1]*100:.1f},{ci[1][1]*100:.1f}) | '
-          f'NIE={pt[2]*100:.2f}pp ({ci[0][2]*100:.2f},{ci[1][2]*100:.2f}) | '
-          f'PM={pt[3]*100:.1f}% ({ci[0][3]*100:.1f},{ci[1][3]*100:.1f})')
-pd.DataFrame(canon).to_csv(f'{D}/results/v5_mediation.csv', index=False)
 
 ei_m = pd.read_csv(f'{D}/results/aim_eicu_V3_mediation.csv').set_index('effect')
 meds.append(('eICU: norepinephrine use (proxy)', ei_m))
@@ -120,7 +112,7 @@ axA.legend(handles=[Line2D([0], [0], marker='o', color=colors[k], label=l, ls=''
                     for k, l in [('TE', 'Total effect'), ('NDE', 'Direct effect'),
                                  ('NIE', 'Indirect effect')]],
            loc='upper right', bbox_to_anchor=(0.68, 0.99), fontsize=8)
-axA.set_title('A. Mediation effects (95% CI)')
+axA.set_title('A. Mediation effects (95% CI)\nMIMIC new-onset cohort: n = 789 (215 SICM); eICU proxy cohort: n = 6,006', fontsize=11)
 axA.grid(alpha=0.3, axis='x')
 for gi, (lab, mask, c) in enumerate([('New-onset SICM', dn['sicm'] == 1, '#d62728'),
                                      ('Reference', dn['sicm'] == 0, '#1f77b4')]):
@@ -136,7 +128,7 @@ axB.set_xticklabels(['No NE', 'Tertile 1', 'Tertile 2', 'Tertile 3'], fontsize=9
 axB.set_xlabel('Peak norepinephrine-equivalent dose (µg/kg/min, tertiles among users)')
 axB.set_ylabel('Observed 28-day mortality')
 axB.set_ylim(0, 0.85)
-axB.set_title('B. Observed mortality by dose group (95% CI)')
+axB.set_title('B. Observed mortality by dose group (95% CI)\nMIMIC new-onset cohort: n = 789 (215 SICM; 574 reference)', fontsize=11)
 axB.legend(fontsize=9)
 axB.grid(alpha=0.3, axis='y')
 fig3.tight_layout()

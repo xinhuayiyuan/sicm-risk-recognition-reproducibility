@@ -3,13 +3,13 @@
 import warnings; warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd, psycopg2
 
-D = 'D:/MIMICIV/exec'
+D = '<PROJECT_ROOT>/exec'
 OUT = []
 def log(s):
     print(s); OUT.append(str(s))
 
 conn = psycopg2.connect(dbname='mimic', host='127.0.0.1', port=5431,
-                        user='postgres', password='123456')
+                        user='postgres', password='<SET-IN-ENVIRONMENT>')
 co = pd.read_csv(f'{D}/data/cohort_main.csv')
 dn = co[(co['has_hf'] == 0) & (co['congestive_heart_failure'] == 0)].copy()
 

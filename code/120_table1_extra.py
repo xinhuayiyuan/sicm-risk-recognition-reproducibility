@@ -4,7 +4,7 @@ import warnings; warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd, psycopg2
 from scipy import stats
 
-D = 'D:/MIMICIV/exec'
+D = '<PROJECT_ROOT>/exec'
 co = pd.read_csv(f'{D}/data/cohort_main.csv')
 
 hf = (co['has_hf'] == 1) | (co['congestive_heart_failure'] == 1)
@@ -12,7 +12,7 @@ print('groups check:', len(co[~hf & (co['sicm'] == 1)]), len(co[~hf & (co['sicm'
 assert (len(co[~hf & (co['sicm'] == 1)]), len(co[~hf & (co['sicm'] == 0)]), len(co[hf])) == (215, 574, 994)
 
 conn = psycopg2.connect(dbname='mimic', host='127.0.0.1', port=5431,
-                        user='postgres', password='123456')
+                        user='postgres', password='<SET-IN-ENVIRONMENT>')
 wt = pd.read_sql("SELECT stay_id, weight FROM mimiciv_derived.first_day_weight", conn)
 conn.close()
 print('weight columns:', list(wt.columns), '| coverage in cohort:', round(co['stay_id'].isin(wt['stay_id']).mean(), 3))

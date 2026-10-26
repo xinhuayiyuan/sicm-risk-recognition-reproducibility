@@ -12,7 +12,7 @@ import statsmodels.api as sm
 
 SEED = 20260101
 rng = np.random.RandomState(SEED)
-D = 'D:/MIMICIV/exec'
+D = '<PROJECT_ROOT>/exec'
 
 co = pd.read_csv(f'{D}/data/cohort_main.csv')
 aki = pd.read_csv(f'{D}/data/aki_stage_24h.csv')

@@ -1,4 +1,4 @@
-# 118b_figS45.py — Fig. S4 (IPW Love plot) and Fig. S5 (eICU cohort flow)
+# 118b_figS45.py — figS4(IPW Love plot) + figS5(eICU流程图)
 # -*- coding: utf-8 -*-
 import warnings; warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd
@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import textwrap
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 
-D = 'D:/MIMICIV/exec'
+D = '<PROJECT_ROOT>/exec'
 
 # ---- figS4: Love plot ----
 smd = pd.read_csv(f'{D}/results/v6_ipw_balance_smd.csv')
@@ -19,9 +19,14 @@ ax.scatter(smd['SMD_weighted'], yy, color='#1f77b4', label='After weighting', zo
 for i, (u, w_) in enumerate(zip(smd['SMD_unweighted'], smd['SMD_weighted'])):
     ax.plot([u, w_], [i, i], color='grey', lw=0.8, zorder=1)
 ax.axvline(0.1, color='k', ls='--', lw=0.8); ax.axvline(-0.1, color='k', ls='--', lw=0.8)
-ax.set_yticks(yy); ax.set_yticklabels(smd['covariate'], fontsize=9)
+COV = {'age':'Age','sofa_24h':'SOFA score, first 24 h','heart_rate_max':'Heart rate max',
+       'mbp_min':'MAP min','resp_rate_max':'Respiratory rate max','spo2_min':'SpO2 min',
+       'lactate_max_24h':'Lactate max','wbc_max':'WBC max','creatinine_max':'Creatinine max',
+       'cci':'Charlson comorbidity index','invasive_vent':'Invasive ventilation (whole stay)',
+       'gender_f':'Female sex'}
+ax.set_yticks(yy); ax.set_yticklabels([COV.get(x, x) for x in smd['covariate']], fontsize=9)
 ax.set_xlabel('Standardised mean difference (evaluable vs non-evaluable)')
-ax.set_title('Covariate balance before and after IPW')
+ax.set_title('Echocardiography-selection IPW source population: n = 16,462\nEvaluable: n = 1,783; non-evaluable: n = 14,679', fontsize=11)
 ax.legend(fontsize=9, loc='lower right'); ax.grid(alpha=0.3, axis='x')
 fig.tight_layout(); fig.savefig(f'{D}/figures/figS4_ipw_loveplot.png', dpi=200)
 plt.close('all'); print('[figS4 saved]')

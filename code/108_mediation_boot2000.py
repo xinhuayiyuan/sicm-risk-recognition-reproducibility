@@ -6,7 +6,7 @@ import statsmodels.api as sm
 
 SEED = 20260101
 rng = np.random.RandomState(SEED)
-D = 'D:/MIMICIV/exec'
+D = '<PROJECT_ROOT>/exec'
 N_BOOT = 2000
 
 co = pd.read_csv(f'{D}/data/cohort_main.csv')

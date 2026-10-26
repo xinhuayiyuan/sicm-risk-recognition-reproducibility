@@ -1,5 +1,5 @@
 metric,value
 OOF_AUC,0.677
 OOF_AUC_lo,0.635
-OOF_AUC_hi,0.718
+OOF_AUC_hi,0.719
 oof_spec,Cs=20; inner cv=10 (matches primary model)

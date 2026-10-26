@@ -4,6 +4,7 @@ title: "Reproducibility package: Left Ventricular Systolic Dysfunction in Sepsis
 authors:
   - family-names: "[Author names to be completed at publication]"
     given-names: ""
-date-released: 2026-10-21
-url: "https://github.com/xinhuayiyuan/troponin-trajectory-sepsis123"
+date-released: 2026-10-26
+version: 1.3
+url: "https://github.com/xinhuayiyuan/sicm-risk-recognition-reproducibility"
 license: MIT

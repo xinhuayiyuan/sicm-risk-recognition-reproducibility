@@ -1,4 +1,4 @@
-# 118a_figS3.py — Fig. S3: bedside-score ROC and landmark-cohort ROC
+# 118a_figS3.py — figS3: 床旁评分ROC + 修正界标ROC
 # -*- coding: utf-8 -*-
 import warnings; warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd
@@ -10,7 +10,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import roc_auc_score, roc_curve
 
 SEED = 20260101
-D = 'D:/MIMICIV/exec'
+D = '<PROJECT_ROOT>/exec'
 
 co = pd.read_csv(f'{D}/data/cohort_main.csv')
 aki = pd.read_csv(f'{D}/data/aki_stage_24h.csv')
@@ -60,7 +60,7 @@ ytr, yte = y[tr], y[te]
 las = las_fit20(Xtr, ytr)
 p1 = las.predict_proba(Xte)[:, 1]
 
-# ---- bedside integer score ----
+# ---- 床旁评分（99e①流程） ----
 sc_df = pd.read_csv(f'{D}/results/v5_score_card_full.csv')
 sel = [f for f in sc_df.feature if f != '(Intercept)']
 pts_raw = sc_df.set_index('feature').loc[sel, 'points_raw']
@@ -70,7 +70,7 @@ dte_z = dte[sel].astype(float).copy()
 dte_z[cont] = (dte_z[cont].fillna(dtr[cont].median()) - mu) / sd_
 tot_te = (dte_z * pts_raw).sum(axis=1)
 auc_score = roc_auc_score(yte, tot_te)
-print(f'[figS3] bedside score test AUC={auc_score:.3f}')
+print(f'[figS3] bedside score test AUC={auc_score:.3f} (manuscript: 0.719)')
 
 # ---- 修正界标（106流程） ----
 cr = pd.read_csv(f'{D}/data/comprisk_corrected.csv')[['stay_id', 't_ef50', 't_death']]
@@ -96,7 +96,7 @@ for name, pp, c in [('Full LASSO model (AUC 0.731)', p1, '#d62728'),
     ax.plot(fpr, tpr, color=c, lw=1.6, label=name)
 ax.plot([0, 1], [0, 1], 'k--', lw=0.8)
 ax.set_xlabel('False positive rate'); ax.set_ylabel('True positive rate')
-ax.set_title('A. Bedside score versus full model (test set)')
+ax.set_title('A. New-onset cohort: held-out test set\n(n = 237; 65 SICM)', fontsize=11)
 ax.legend(fontsize=9, loc='lower right'); ax.grid(alpha=0.3)
 ax = axes[1]
 for name, pp, c in [(f'Frozen model transported (AUC {roc_auc_score(ylm[te2], p_trans):.3f})', p_trans, '#d62728'),
@@ -105,7 +105,7 @@ for name, pp, c in [(f'Frozen model transported (AUC {roc_auc_score(ylm[te2], p_
     ax.plot(fpr, tpr, color=c, lw=1.6, label=name)
 ax.plot([0, 1], [0, 1], 'k--', lw=0.8)
 ax.set_xlabel('False positive rate'); ax.set_ylabel('True positive rate')
-ax.set_title('B. Landmark analysis: SICM developing after 24 h')
+ax.set_title('B. Landmark subset of new-onset cohort\n(n = 610; 60 SICM after 24 h)', fontsize=11)
 ax.legend(fontsize=9, loc='lower right'); ax.grid(alpha=0.3)
 fig.tight_layout(); fig.savefig(f'{D}/figures/figS3_score_landmark_roc.png', dpi=200)
 plt.close('all'); print('[done 118a: figS3 saved]')
