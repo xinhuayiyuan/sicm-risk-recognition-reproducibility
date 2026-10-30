@@ -30,7 +30,7 @@ Corrected files:
 - `results/v10_comprisk_cif.csv` — 28-day Aalen–Johansen CIF 27.1%, naive 1−Kaplan–Meier 28.4% (SHA256 `593073672A5C3144C27E271BE7F8BEAA2B70E5A869380C899BF443C34BAAA1D8`)
 - `results/v10_comprisk_finegray.csv` — Fine–Gray model with 214 timestamped SICM events (SHA256 `919E6CD426C81CEDFF67340E4E5DEFD8B46A4C9B322CC9783182522F07520277`)
 - `results/v10_landmark_clean.csv` — landmark evaluation in the original held-out test set (n = 184, 22 events, AUC 0.658, 95% CI 0.528–0.779) and the exploratory 610-patient re-split (SHA256 `41118D9B60CF6C648D537FCF7914C2689FE1399B53BC2D88F8BDB50DF9902495`)
-- `figures/figS2_cuminc_aj_km.png` — corrected cumulative-incidence figure (SHA256 `19E72A794382B5828AB7CD16EB55BFE3D0859089531421544D2C790D0258DC21`)
+- `figures/figS2_cuminc_aj_km.png` — corrected cumulative-incidence figure (SHA256 `CA3F0CFD16F6A62B16FF613F0865F3FE33946A387CDFB56323A40830C5B0B6AF`)
 
 The primary penalised model was not refitted. `results/v8_primary_lasso_model.json` remains unchanged (SHA256 `5697DB9E10B34C9D13F3363CA029016B97E0E88639C3557D56519F1B34B14B82`).
 
@@ -46,6 +46,8 @@ No record-level data or files containing patient/stay identifier columns are inc
 ## Integrity verification
 
 SHA256 manifests are provided as `code_checksums.txt`, `results_checksums.txt` and `figure_checksums.txt`. Run `sha256sum -c <manifest>` from the package root on Linux/Mac, or compare each listed hash with `Get-FileHash -Algorithm SHA256` in Windows PowerShell.
+
+Round-5 submission preparation (2026-10-30): all figures were regenerated or confirmed at 300 dpi; the complete 27-item TRIPOD+AI checklist was added to the submission package; no locked analysis result changed.
 
 ## Statement
 
