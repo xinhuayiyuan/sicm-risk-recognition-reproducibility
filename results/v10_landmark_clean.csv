@@ -1,0 +1,13 @@
+analysis,value
+original_test_landmark_n,184.0
+original_test_landmark_events,22.0
+original_test_landmark_AUC,0.658
+original_test_landmark_AUC_lo,0.528
+original_test_landmark_AUC_hi,0.779
+resplit_landmark_test_n,183.0
+resplit_landmark_test_events,18.0
+resplit_landmark_test_AUC,0.655
+resplit_landmark_test_AUC_lo,0.533
+resplit_landmark_test_AUC_hi,0.767
+resplit_test_in_original_development_n,115.0
+resplit_test_in_original_development_pct,62.8

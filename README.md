@@ -65,7 +65,8 @@ Earlier-numbered scripts (`06`-`98`) document the analysis lineage (model varian
 
 - Aggregated result files contain no record-level identifiers; files containing such identifiers are excluded by design and listed in the packager's exclusion log.
 - `DATA_LOCK_STATEMENT.md` records the submission lock; SHA256 manifests cover code, results and figures.
-- The pre-specified analysis plan and full computation logs are available from the corresponding author on reasonable request, as stated in the manuscript.
+- Round-4 correction (2026-10-30): competing-risk event times were recomputed using `admissions.deathtime` and the confirmatory follow-up echocardiogram for the 13 decline-only cases; see `results/v10_comprisk_cif.csv`, `results/v10_comprisk_finegray.csv` and `results/v10_landmark_clean.csv`. The original `v4_corrected_*` and `v6_landmark24h_corrected.csv` files are retained for provenance. The corrected cumulative-incidence figure replaces `figures/figS2_cuminc_aj_km.png`.
+- The pre-specified analysis plan is summarised in Supplement S1; the full plan is available from the corresponding author on reasonable request.
 - Comments in some scripts are in Chinese; all outputs referenced by the manuscript are in English.
 
 ## License
