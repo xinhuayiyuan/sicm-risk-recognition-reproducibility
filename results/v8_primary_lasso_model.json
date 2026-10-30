@@ -1,0 +1,258 @@
+{
+  "model": "L1-penalised logistic regression; LogisticRegressionCV lambda.min equivalent",
+  "formula": "logit(p) = intercept + sum(coefficient[j] * x[j]); continuous x=(value-mean)/sd_population after median imputation; binary x is unscaled",
+  "development_n": 552,
+  "development_events": 150,
+  "test_n": 237,
+  "test_events": 65,
+  "seed": 20260101,
+  "solver": "liblinear",
+  "penalty": "l1",
+  "cv_folds": 10,
+  "cs": 20,
+  "scoring": "roc_auc",
+  "max_iter": 3000,
+  "selected_C": 0.23357214690901212,
+  "intercept": -1.3251590016552133,
+  "test_auc": 0.7306797853309482,
+  "features": [
+    "age",
+    "cci",
+    "sofa_24h",
+    "heart_rate_max",
+    "mbp_min",
+    "resp_rate_max",
+    "spo2_min",
+    "temperature_max",
+    "lactate_max_24h",
+    "wbc_max",
+    "platelets_min",
+    "creatinine_max",
+    "bun_max",
+    "bilirubin_total_max",
+    "sodium_min",
+    "potassium_max",
+    "glucose_max",
+    "inr_max",
+    "ptt_max",
+    "bicarbonate_min",
+    "aniongap_max",
+    "hemoglobin_min",
+    "ne_max_24h_strict",
+    "aki_stage_24h",
+    "gender_f",
+    "race_black",
+    "race_other",
+    "myocardial_infarct",
+    "peripheral_vascular_disease",
+    "cerebrovascular_disease",
+    "dementia",
+    "chronic_pulmonary_disease",
+    "rheumatic_disease",
+    "mild_liver_disease",
+    "diabetes_without_cc",
+    "diabetes_with_cc",
+    "renal_disease",
+    "malignant_cancer",
+    "severe_liver_disease",
+    "metastatic_solid_tumor",
+    "vent_24h",
+    "rrt_firstday",
+    "lactate_miss",
+    "bili_miss"
+  ],
+  "numeric_features": [
+    "age",
+    "cci",
+    "sofa_24h",
+    "heart_rate_max",
+    "mbp_min",
+    "resp_rate_max",
+    "spo2_min",
+    "temperature_max",
+    "lactate_max_24h",
+    "wbc_max",
+    "platelets_min",
+    "creatinine_max",
+    "bun_max",
+    "bilirubin_total_max",
+    "sodium_min",
+    "potassium_max",
+    "glucose_max",
+    "inr_max",
+    "ptt_max",
+    "bicarbonate_min",
+    "aniongap_max",
+    "hemoglobin_min",
+    "ne_max_24h_strict",
+    "aki_stage_24h"
+  ],
+  "coefficients": {
+    "age": 0.05175437293392108,
+    "cci": 0.0,
+    "sofa_24h": 0.037398114881513025,
+    "heart_rate_max": 0.2926903977701261,
+    "mbp_min": 0.0,
+    "resp_rate_max": 0.15585399158531563,
+    "spo2_min": 0.0,
+    "temperature_max": -0.15860223988015915,
+    "lactate_max_24h": -0.13459503007353912,
+    "wbc_max": -0.01662383587009753,
+    "platelets_min": 0.02246811548299504,
+    "creatinine_max": -0.0746709474265636,
+    "bun_max": -0.02363709343058844,
+    "bilirubin_total_max": -0.0433770808355395,
+    "sodium_min": -0.11971760529300574,
+    "potassium_max": -0.07688749673336276,
+    "glucose_max": 0.1564039975093253,
+    "inr_max": 0.1438278228336087,
+    "ptt_max": 0.14699388763310733,
+    "bicarbonate_min": 0.0,
+    "aniongap_max": -0.0029773725096663016,
+    "hemoglobin_min": 0.26058679567667914,
+    "ne_max_24h_strict": -0.009542751259262105,
+    "aki_stage_24h": 0.0,
+    "gender_f": 0.0,
+    "race_black": 0.0,
+    "race_other": 0.0,
+    "myocardial_infarct": 1.0984229506080512,
+    "peripheral_vascular_disease": 0.12038567603502034,
+    "cerebrovascular_disease": 0.0,
+    "dementia": 0.0,
+    "chronic_pulmonary_disease": 0.0,
+    "rheumatic_disease": 0.0,
+    "mild_liver_disease": 0.0,
+    "diabetes_without_cc": 0.0,
+    "diabetes_with_cc": 0.0,
+    "renal_disease": 0.0,
+    "malignant_cancer": 0.0,
+    "severe_liver_disease": 0.0,
+    "metastatic_solid_tumor": 0.0,
+    "vent_24h": 0.0,
+    "rrt_firstday": 0.0,
+    "lactate_miss": 0.0,
+    "bili_miss": 0.0
+  },
+  "preprocessing": {
+    "age": {
+      "imputation_median": 66.59329480332372,
+      "mean": 65.2477223448286,
+      "sd_population": 14.859876838950136
+    },
+    "cci": {
+      "imputation_median": 5.0,
+      "mean": 5.146739130434782,
+      "sd_population": 2.8415633233051247
+    },
+    "sofa_24h": {
+      "imputation_median": 7.0,
+      "mean": 7.403985507246377,
+      "sd_population": 4.265829691433039
+    },
+    "heart_rate_max": {
+      "imputation_median": 108.0,
+      "mean": 110.8786231884058,
+      "sd_population": 24.279578843732597
+    },
+    "mbp_min": {
+      "imputation_median": 57.0,
+      "mean": 54.63586956521739,
+      "sd_population": 16.18606764591262
+    },
+    "resp_rate_max": {
+      "imputation_median": 28.0,
+      "mean": 29.45108695652174,
+      "sd_population": 6.69302028666102
+    },
+    "spo2_min": {
+      "imputation_median": 92.0,
+      "mean": 90.45108695652173,
+      "sd_population": 8.792153054870273
+    },
+    "temperature_max": {
+      "imputation_median": 37.39,
+      "mean": 37.43554347826087,
+      "sd_population": 1.1627419780544306
+    },
+    "lactate_max_24h": {
+      "imputation_median": 2.4,
+      "mean": 3.505797101449275,
+      "sd_population": 3.194368189915687
+    },
+    "wbc_max": {
+      "imputation_median": 15.5,
+      "mean": 17.025905797101448,
+      "sd_population": 9.407097184594257
+    },
+    "platelets_min": {
+      "imputation_median": 174.0,
+      "mean": 183.5018115942029,
+      "sd_population": 100.32257752836856
+    },
+    "creatinine_max": {
+      "imputation_median": 1.4,
+      "mean": 2.266847826086957,
+      "sd_population": 3.9549921020866448
+    },
+    "bun_max": {
+      "imputation_median": 29.0,
+      "mean": 36.33152173913044,
+      "sd_population": 26.136844846956475
+    },
+    "bilirubin_total_max": {
+      "imputation_median": 0.8,
+      "mean": 1.9206521739130435,
+      "sd_population": 4.452870057455329
+    },
+    "sodium_min": {
+      "imputation_median": 137.0,
+      "mean": 137.03623188405797,
+      "sd_population": 5.451245596643527
+    },
+    "potassium_max": {
+      "imputation_median": 4.5,
+      "mean": 4.7518115942028984,
+      "sd_population": 0.9458128438109457
+    },
+    "glucose_max": {
+      "imputation_median": 167.0,
+      "mean": 206.7536231884058,
+      "sd_population": 129.59646463655093
+    },
+    "inr_max": {
+      "imputation_median": 1.4,
+      "mean": 1.6824275362318841,
+      "sd_population": 0.9512763614026657
+    },
+    "ptt_max": {
+      "imputation_median": 39.8,
+      "mean": 55.58297101449275,
+      "sd_population": 37.60835071293324
+    },
+    "bicarbonate_min": {
+      "imputation_median": 20.0,
+      "mean": 19.929347826086957,
+      "sd_population": 5.206643708292701
+    },
+    "aniongap_max": {
+      "imputation_median": 17.0,
+      "mean": 18.195652173913043,
+      "sd_population": 5.855579150123823
+    },
+    "hemoglobin_min": {
+      "imputation_median": 9.5,
+      "mean": 9.85996376811594,
+      "sd_population": 2.32333983086886
+    },
+    "ne_max_24h_strict": {
+      "imputation_median": 0.0,
+      "mean": 0.20311858152719808,
+      "sd_population": 1.16065590840259
+    },
+    "aki_stage_24h": {
+      "imputation_median": 2.0,
+      "mean": 1.3170289855072463,
+      "sd_population": 0.9977510286147889
+    }
+  }
+}
