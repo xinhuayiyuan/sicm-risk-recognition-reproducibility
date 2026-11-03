@@ -121,7 +121,7 @@ axA.legend(handles=[Line2D([0], [0], marker='o', color=colors[k], label=l, ls=''
                     for k, l in [('TE', 'Total effect'), ('NDE', 'Direct effect'),
                                  ('NIE', 'Indirect effect')]],
            loc='upper right', bbox_to_anchor=(0.68, 0.99), fontsize=8)
-axA.set_title('A. Mediation effects (95% CI)')
+axA.set_title('A. Exploratory effect decomposition (95% CI)')
 axA.grid(alpha=0.3, axis='x')
 for gi, (lab, mask, c) in enumerate([('New-onset SICM', dn['sicm'] == 1, '#d62728'),
                                      ('Reference', dn['sicm'] == 0, '#1f77b4')]):

@@ -123,7 +123,8 @@ CREATE TABLE mimiciv_echo.acs_exclusion AS
 SELECT DISTINCT i.stay_id
 FROM mimiciv_icu.icustays i
 INNER JOIN mimiciv_hosp.diagnoses_icd d ON i.hadm_id = d.hadm_id
-WHERE d.icd_code LIKE 'I21%' OR d.icd_code LIKE 'I22%';
+WHERE (d.icd_version = 9 AND (d.icd_code LIKE '410%' OR d.icd_code LIKE '411%'))
+   OR (d.icd_version = 10 AND (d.icd_code LIKE 'I21%' OR d.icd_code LIKE 'I22%');
 
 CREATE INDEX idx_acs_stay ON mimiciv_echo.acs_exclusion(stay_id);
 
@@ -157,10 +158,3 @@ SELECT 'Excluded for ACS' AS metric, COUNT(*)::text FROM mimiciv_echo.acs_exclus
 UNION ALL
 SELECT 'Final SICM (Imaging) after ACS exclusion' AS metric, SUM(sicm_imaging)::text FROM mimiciv_echo.sicm_imaging_criteria;
 
-    b.baseline_lvef - a.lvef_value AS lvef_drop_absolute,
-    CASE WHEN b.baseline_lvef > 0 THEN (b.baseline_lvef - a.lvef_value)/b.baseline_lvef * 100 ELSE NULL END AS lvef_drop_percent
-FROM mimiciv_echo.echo_lvef_numeric a
-INNER JOIN mimiciv_echo.echo_lvef_baseline b
-    ON a.stay_id = b.stay_id AND a.measurement_datetime > b.baseline_datetime;
-
-CREATE INDEX idx_echo_lvef_fu_stay ON mimiciv_echo.echo_lvef_followup(stay_id);

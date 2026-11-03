@@ -1,0 +1,7 @@
+analysis_set,n,events,AUC,AUC_lo,AUC_hi,sensitivity,specificity,threshold,flagged_n
+Descriptive cohort,1297,466,,,,,,,
+New-onset cohort,613,111,,,,,,,
+Held-out test: primary model,184,33,0.633955448524985,,,,,,
+Held-out test: integer bedside score,184,33,0.6181015452538632,0.5099187236604454,0.7224714027694159,,,,
+Five-fold OOF: primary specification,613,111,0.6157173109364344,0.5560626861921683,0.6724377265711925,,,,
+Test threshold nearest sensitivity 0.65 (exploratory),184,33,,,,0.6363636363636364,0.6158940397350994,0.1577349966431252,79.0

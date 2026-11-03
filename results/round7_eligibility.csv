@@ -1,0 +1,5 @@
+restriction,n,events,adjusted_OR_CI,p,test_AUC
+None,613,111,1.782 (1.152?2.757),0.0095,0.632
+First ICU stays only,528,96,1.835 (1.150?2.928),0.0109,0.572
+Stays >=24 h only,599,111,1.788 (1.156?2.766),0.009,0.608
+Both restrictions,514,96,1.846 (1.157?2.945),0.0101,0.514

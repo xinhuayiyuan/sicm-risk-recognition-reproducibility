@@ -1,0 +1,11 @@
+metric,value
+initial_n,789
+excluded_invalid_death_time,2
+excluded_invalid_or_postdeath_sicm_onset,1
+time_dependent_analysis_n,786
+time_dependent_sicm_n,213
+time_dependent_deaths,292
+landmark_n,767
+landmark_early_sicm,130
+landmark_later_sicm,77
+landmark_deaths,273

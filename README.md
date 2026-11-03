@@ -1,6 +1,8 @@
 # Reproducibility Package
 
-**Manuscript**: Left Ventricular Systolic Dysfunction in Sepsis without Prior Heart Failure: Early Risk Recognition and Mortality Risk
+**Manuscript**: Left Ventricular Systolic Dysfunction in Sepsis without Index-Admission Heart Failure Diagnosis: 24-h Risk Recognition and 28-day Mortality
+
+**Current release**: Round-7 corrected post-hoc analysis (1,297 descriptive stays; 613 current no-index-HF stays; 111 SICM). Earlier analysis-set conventions below apply to archived versions only; see `docs/ROUND7_CORRECTED_ANALYSIS.md` and `docs/ROUND7_DATA_LOCK_STATEMENT.md` for the current definitions and lock.
 
 This package contains the analysis code, SQL extraction scripts, aggregated result files and figures underlying the manuscript. It is provided to editors, reviewers and readers to support evaluation and reproduction of the reported results.
 
@@ -52,6 +54,7 @@ The fixed random seed is **20260101** throughout. Key steps:
 | Competing risks | `62_prepare_comprisk.py`, `62_comprisk.R`, `96_comprisk_corrected.R` | `v4_corrected_cif.csv`, `v4_corrected_finegray.csv` |
 | Internal-validation battery (subgroups, eras, phenotypes, weighted AUC) | `101_...` (part 7) | `v5_subgroup_heterogeneity.csv`, `v5_temporal_era_cv.csv`, `v5_sensitivity_S1_definitions.csv`, `v5_weighted_auc.csv` |
 | Landmark analysis | `101_...` (part 6), `106_landmark_and_sensitivity.py` | `v6_landmark24h_corrected.csv` |
+| Round-6 post-hoc sensitivity | `round6_prepare.py`, `round6_models.py`, `round6_time_mortality.py`, `round6_time_mortality.R` | `round6_*.csv`; see `docs/ROUND6_SENSITIVITY.md` |
 | Eligibility sensitivity | `104_eligibility_sensitivity.py` | restriction sensitivity table (Supplement S1) |
 | Coding-era sensitivity | `101_...` (part 4) | `table_S1_coding_sensitivity_en.csv` |
 | eICU pathway consistency | `50_eicu_proxy.py`, `51_proxy_decompose.py` | `aim_eicu_V1_transport.csv`, `aim_eicu_V3_mediation.csv` |
@@ -68,6 +71,10 @@ Earlier-numbered scripts (`06`-`98`) document the analysis lineage (model varian
 - Round-4 correction (2026-10-30): competing-risk event times were recomputed using `admissions.deathtime` and the confirmatory follow-up echocardiogram for the 13 decline-only cases; see `results/v10_comprisk_cif.csv`, `results/v10_comprisk_finegray.csv` and `results/v10_landmark_clean.csv`. The original `v4_corrected_*` and `v6_landmark24h_corrected.csv` files are retained for provenance. The corrected cumulative-incidence figure replaces `figures/figS2_cuminc_aj_km.png`.
 - The pre-specified analysis plan is summarised in Supplement S1; the full plan is available from the corresponding author on reasonable request.
 - Comments in some scripts are in Chinese; all outputs referenced by the manuscript are in English.
+
+## Round-7 corrected analysis
+
+The current manuscript uses the post-hoc Round-7 cohort (1,297 descriptive stays; 613 current no-index-HF stays; 111 SICM), not the earlier 1,783/789 analysis sets. See `docs/ROUND7_CORRECTED_ANALYSIS.md` for corrections, reproduction order and the two remaining upstream limitations (`vaso_new_upgrade` and eICU export construction). Round-7 aggregate results and the complete 44-variable JSON model are included as `results/round7_*`.
 
 ## License
 

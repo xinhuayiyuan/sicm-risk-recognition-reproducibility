@@ -1,0 +1,10 @@
+[stays] cohort stays=1297, unique patients=1271
+[stays] patients with >1 stay in cohort: 26, extra stays: 26
+
+[recovery] SICM patients with any LVEF record: 111 / 111
+[recovery] LVEF records per SICM patient: median 1, >=2 records: 39
+[recovery] EF<50 cases with follow-up echo after first abnormal: 26
+[recovery] recovered to LVEF>=50%: 13 / 26 (50.0%)
+[recovery] median time from first abnormal to recovery: 44.1 h (IQR 25.6-96.5)
+[recovery] recovery within 168h: 10 of 13 recoveries
+[recovery] 28d mortality: recovered 23.1% vs not-recovered 38.5% (descriptive)

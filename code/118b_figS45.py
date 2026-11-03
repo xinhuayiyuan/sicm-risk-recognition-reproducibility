@@ -37,8 +37,8 @@ ax.axis('off')
 flow = [
     ("eICU-CRD v2.0 Sepsis-3 ICU stays\n(208 hospitals; age 18-90, ICU stay >=24 h)\nn = 18,253", 0.88),
     ("At least one troponin I measurement\n(eICU analysis cohort)\nn = 6,006", 0.62),
-    ("Proxy exposure: no HF history +\ntroponin I >0.04 ng/mL (first 72 h)\nn = 3,902 (65.0%)", 0.36),
-    ("Mediator: norepinephrine use (n = 462)\nOutcome: 28-day mortality (21.3%)\nTE +1.9 pp (0.1 to 4.1); no positive mediation", 0.12),
+    ("Proxy exposure: no recorded HF history +\ntroponin I >0.04 ng/mL (first 72 h)\nn = 3,902 (65.0%)", 0.36),
+    ("Candidate mediator: norepinephrine use (n = 462)\nOutcome: 28-day mortality (21.3%)\nTE +1.9 pp (0.1 to 4.1); no positive indirect association", 0.12),
 ]
 for txt, ypos in flow:
     ax.add_patch(FancyBboxPatch((0.16, ypos - 0.085), 0.68, 0.16,

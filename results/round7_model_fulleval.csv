@@ -1,0 +1,6 @@
+model,AUC,PR_AUC,AUC_lo,AUC_hi,Brier,Cal_intercept,Cal_slope,ICI
+Baseline (age+SOFA),0.564,0.2,0.457,0.661,0.147,-0.019,1.075,0.071
+LASSO-logistic (lambda.min; primary),0.634,0.314,0.53,0.738,0.153,-0.102,0.371,0.084
+"LASSO-logistic (1-SE, sparse)",0.581,0.256,0.469,0.693,0.146,-0.209,1.16,0.041
+XGBoost (Platt-calibrated),0.638,0.263,0.532,0.737,0.147,-0.044,147.316,0.101
+LightGBM (Platt-calibrated),0.612,0.267,0.505,0.722,0.147,-0.044,24.923,0.068

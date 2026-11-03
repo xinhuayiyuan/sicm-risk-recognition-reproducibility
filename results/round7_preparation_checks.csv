@@ -1,0 +1,13 @@
+metric,value
+source_stays,18273
+corrected_acs_flags,2772
+selection_source_n,14980
+descriptive_n,1297
+unique_patients,1271
+sicm_n,466
+current_no_hf_n,613
+current_no_hf_sicm,111
+postsepsis_ef50_before_sepsis,0
+pre_icu_ne_starts_included,0
+pre_icu_vent_starts_included,0
+cardiac_surgery_vad_exclusion_implemented,0

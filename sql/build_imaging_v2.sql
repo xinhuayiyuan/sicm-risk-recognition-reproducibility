@@ -84,7 +84,8 @@ CREATE TABLE mimiciv_echo.acs_exclusion AS
 SELECT DISTINCT i.stay_id
 FROM mimiciv_icu.icustays i
 INNER JOIN mimiciv_hosp.diagnoses_icd d ON i.hadm_id = d.hadm_id
-WHERE d.icd_code LIKE 'I21%' OR d.icd_code LIKE 'I22%';
+WHERE (d.icd_version = 9 AND (d.icd_code LIKE '410%' OR d.icd_code LIKE '411%'))
+   OR (d.icd_version = 10 AND (d.icd_code LIKE 'I21%' OR d.icd_code LIKE 'I22%');
 
 CREATE INDEX idx_acs_stay ON mimiciv_echo.acs_exclusion(stay_id);
 
